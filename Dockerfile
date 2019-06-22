@@ -1,6 +1,8 @@
 FROM ros:kinetic
 
-RUN apt-get update && \
+RUN apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654 && \
+    apt-key del 421C365BD9FF1F717815A3895523BAEEB01FA116 && \
+    apt-get update && \
     apt-get install -y sudo software-properties-common && \
     add-apt-repository ppa:hrg/daily && \
     apt-get update && \
@@ -19,6 +21,7 @@ RUN apt-get update && \
     
 
 RUN git clone https://github.com/s-nakaoka/choreonoid.git && \
+    git clone https://github.com/google/googletest.git && \
     cd /choreonoid && \
     git checkout v1.7.0 && \
     echo "y" | ./misc/script/install-requisites-ubuntu-16.04.sh && \
@@ -36,5 +39,9 @@ RUN git clone https://github.com/s-nakaoka/choreonoid.git && \
         -DBUILD_GROBOT_PLUGIN:BOOL=TRUE  \
         -DBUILD_ASSIMP_PLUGIN:BOOL=FALSE \
         -DBUILD_PYTHON_PLUGIN:BOOL=TRUE && \
+    make && \
+    make install && \
+    cd ../googletest && \
+    cmake . && \
     make && \
     make install
