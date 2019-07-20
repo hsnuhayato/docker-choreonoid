@@ -5,7 +5,10 @@ Openrtm's version is 1.1.2 in this image since choreonoid still has some problem
 Also install ros-kinetic-hrpsys and gtest for further use.
 
 # pull from docker hub
-docker pull hsnuhayato/choreonoid1.7
+$ docker pull hsnuhayato/choreonoid1.7
+
+# build docker image in local
+$ docker build --network=host -t choreonoid1.7 .
 
 # run image
 you can run the image with the script below
