@@ -17,7 +17,8 @@ RUN apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E
     apt-get clean && \
     echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc && \
     apt update && \
-    apt install -y ros-kinetic-hrpsys
+    apt install -y ros-kinetic-hrpsys && \
+    apt install -y ros-kinetic-pcl-ros
     
 
 RUN git clone https://github.com/s-nakaoka/choreonoid.git && \
